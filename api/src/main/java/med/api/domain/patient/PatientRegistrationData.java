@@ -14,9 +14,11 @@ public record PatientRegistrationData(
     @Email
     String email,
     @NotBlank
-    String phone,
-    @NotBlank
-    @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")
+    @Pattern(regexp = "\\d{5,15}")
     String document,
-    @NotNull @Valid AddressData address) {
+    @NotBlank
+    String phone,
+    @NotNull
+    @Valid
+    AddressData addressData) {
 }

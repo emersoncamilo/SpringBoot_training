@@ -51,16 +51,16 @@ public class Doctor {
         this.address = new Address(data.addressData());
     }
 
-    public void updateInfo(DoctorUpdateData dataDoctor) {
-        if (dataDoctor.fullName() != null) {
-            this.fullName = dataDoctor.fullName();
+    public void updateInfo(DoctorUpdateData dataUpdate) {
+        if (dataUpdate.fullName() != null) {
+            this.fullName = dataUpdate.fullName();
         }
 
-        if (dataDoctor.phone() != null) {
-            this.phone = dataDoctor.phone();
+        if (dataUpdate.phone() != null) {
+            this.phone = dataUpdate.phone();
         }
-        if (dataDoctor.address() != null) {
-            this.address.updateInfo(dataDoctor.address());
+        if (dataUpdate.addressData() != null) {
+            this.address.updateInfo(dataUpdate.addressData());
         }
     }
 

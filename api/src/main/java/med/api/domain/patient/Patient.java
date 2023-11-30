@@ -28,9 +28,9 @@ public class Patient {
 
     private String email;
 
-    private String phone;
-
     private String document;
+
+    private String phone;
 
     @Embedded
     private Address address;
@@ -44,6 +44,20 @@ public class Patient {
         this.email = data.email();
         this.phone = data.phone();
         this.document = data.document();
-        this.address = new Address(data.address());
+        this.address = new Address(data.addressData());
+    }
+
+
+    public void updateInfo(PatientUpdateData patientUpdate) {
+
+        if (patientUpdate.fullName() != null) {
+            this.fullName = patientUpdate.fullName();
+        }
+        if (patientUpdate.phone() != null) {
+            this.phone = patientUpdate.phone();
+        }
+        if (patientUpdate.addressData() != null) {
+            this.address.updateInfo(patientUpdate.addressData());
+        }
     }
 }

@@ -104,6 +104,13 @@
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="DOCTOR" enabled="true"/>
         <hashTree>
+          <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.path">/doctor</stringProp>
+          </ConfigTestElement>
+          <hashTree/>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="Authorization" elementType="Header">
@@ -124,18 +131,18 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-&quot;fullName&quot;: &quot;Carl&quot;,&#xd;
-&quot;email&quot;: &quot;Carl.ant@med.com&quot;,&#xd;
-&quot;phone&quot;:&quot;1222554455&quot;,&#xd;
-&quot;idDoctor&quot;: &quot;66988&quot;,&#xd;
-&quot;specialty&quot;: &quot;ORTHOPEDICS&quot;,&#xd;
-&quot;addressData&quot;: {&#xd;
-    &quot;publicPlace&quot;: &quot;OConnor&quot;,&#xd;
-    &quot;district&quot;: &quot;Waterford&quot;,&#xd;
-    &quot;zipCode&quot;: &quot;12345678&quot;,&#xd;
-    &quot;city&quot;: &quot;Waterford&quot;,&#xd;
-    &quot;numberAddress&quot;: &quot;554454&quot;,&#xd;
-    &quot;complement&quot;: &quot;River&quot;&#xd;
+    &quot;fullName&quot;: &quot;Dr. Jhon Surname${__Random(1111,999999,)}&quot;,&#xd;
+    &quot;email&quot;: &quot;jhon.surname${__Random(1111,999999,)}@med.com&quot;,&#xd;
+    &quot;phone&quot;: &quot;${__Random(555555555,999999999,)}&quot;,&#xd;
+    &quot;idDoctor&quot;: &quot;${__Random(0111,99999,)}&quot;,&#xd;
+    &quot;specialty&quot;: &quot;ORTHOPEDICS&quot;,&#xd;
+    &quot;addressData&quot;: {&#xd;
+        &quot;publicPlace&quot;: &quot;OConnor&quot;,&#xd;
+        &quot;district&quot;: &quot;Waterford&quot;,&#xd;
+        &quot;zipCode&quot;: &quot;12345678&quot;,&#xd;
+        &quot;city&quot;: &quot;Waterford&quot;,&#xd;
+        &quot;numberAddress&quot;: &quot;554454&quot;,&#xd;
+        &quot;complement&quot;: &quot;River&quot;&#xd;
     }&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
@@ -174,7 +181,6 @@
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.path">/doctor</stringProp>
             <stringProp name="HTTPSampler.method">PUT</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -218,7 +224,6 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.path">/doctor</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -238,6 +243,13 @@
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="PATIENT" enabled="true"/>
         <hashTree>
+          <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.path">/patient</stringProp>
+          </ConfigTestElement>
+          <hashTree/>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
@@ -258,26 +270,77 @@
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
                   <stringProp name="Argument.value">{&#xd;
-&quot;fullName&quot;: &quot;Carl&quot;,&#xd;
-&quot;email&quot;: &quot;Carl.ant@med.com&quot;,&#xd;
-&quot;phone&quot;:&quot;1222554455&quot;,&#xd;
-&quot;idDoctor&quot;: &quot;66988&quot;,&#xd;
-&quot;specialty&quot;: &quot;ORTHOPEDICS&quot;,&#xd;
-&quot;addressData&quot;: {&#xd;
-    &quot;publicPlace&quot;: &quot;OConnor&quot;,&#xd;
-    &quot;district&quot;: &quot;Waterford&quot;,&#xd;
-    &quot;zipCode&quot;: &quot;12345678&quot;,&#xd;
-    &quot;city&quot;: &quot;Waterford&quot;,&#xd;
-    &quot;numberAddress&quot;: &quot;554454&quot;,&#xd;
-    &quot;complement&quot;: &quot;River&quot;&#xd;
+    &quot;fullName&quot;: &quot;Good Person${__Random(1111,999999,)}&quot;,&#xd;
+    &quot;email&quot;: &quot;g.person${__Random(1111,999999,)}@email.com&quot;,&#xd;
+    &quot;phone&quot;: &quot;${__Random(555555555,999999999,)}&quot;,&#xd;
+    &quot;document&quot;: &quot;${__Random(0111,99999,)}&quot;,&#xd;
+    &quot;addressData&quot;: {&#xd;
+        &quot;publicPlace&quot;: &quot;OConnor&quot;,&#xd;
+        &quot;district&quot;: &quot;Waterford&quot;,&#xd;
+        &quot;zipCode&quot;: &quot;12345678&quot;,&#xd;
+        &quot;city&quot;: &quot;Waterford&quot;,&#xd;
+        &quot;numberAddress&quot;: &quot;554454&quot;,&#xd;
+        &quot;complement&quot;: &quot;River&quot;&#xd;
     }&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>
             </elementProp>
-            <stringProp name="HTTPSampler.path">/doctor</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">false</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+            <boolProp name="HTTPSampler.md5">false</boolProp>
+            <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.gui.JSONFormatterGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter" testname="jp@gc - JSON Format Post Processor" enabled="true"/>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATIENT_PUT" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;id&quot;:1,&#xd;
+	&quot;fullName&quot;: &quot;Good Person Updated&quot;,&#xd;
+	&quot;phone&quot;:&quot;111111111&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.method">PUT</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
+            <boolProp name="HTTPSampler.image_parser">false</boolProp>
+            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
+            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+            <boolProp name="HTTPSampler.md5">false</boolProp>
+            <intProp name="HTTPSampler.ipSourceType">0</intProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.gui.JSONFormatterGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter" testname="jp@gc - JSON Format Post Processor" enabled="true"/>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATIENT_GET_ONE" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.path">/patient/1</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -298,30 +361,7 @@
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
               <collectionProp name="Arguments.arguments"/>
             </elementProp>
-            <stringProp name="HTTPSampler.path">/patient</stringProp>
             <stringProp name="HTTPSampler.method">GET</stringProp>
-            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-            <boolProp name="HTTPSampler.BROWSER_COMPATIBLE_MULTIPART">false</boolProp>
-            <boolProp name="HTTPSampler.image_parser">false</boolProp>
-            <boolProp name="HTTPSampler.concurrentDwn">false</boolProp>
-            <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
-            <boolProp name="HTTPSampler.md5">false</boolProp>
-            <intProp name="HTTPSampler.ipSourceType">0</intProp>
-          </HTTPSamplerProxy>
-          <hashTree>
-            <com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.gui.JSONFormatterGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter" testname="jp@gc - JSON Format Post Processor" enabled="true"/>
-            <hashTree/>
-          </hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PATIENT_POST" enabled="true">
-            <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-              <collectionProp name="Arguments.arguments"/>
-            </elementProp>
-            <stringProp name="HTTPSampler.path">/patient</stringProp>
-            <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
             <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -416,6 +456,14 @@
           <stringProp name="RunTime.seconds">1</stringProp>
         </RunTime>
         <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
+          <collectionProp name="UserParameters.names"/>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="1"/>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SIMPLE" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
@@ -444,7 +492,7 @@
           </ModuleController>
           <hashTree/>
         </hashTree>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="DOCTOR All Operations" enabled="false">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="DOCTOR All Operations" enabled="true">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="764597751">Test Plan</stringProp>
             <stringProp name="764597751">Test Plan</stringProp>
@@ -462,7 +510,7 @@
           </collectionProp>
         </ModuleController>
         <hashTree/>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>

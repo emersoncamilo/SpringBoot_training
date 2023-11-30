@@ -35,6 +35,7 @@ public class DoctorController {
     @PostMapping
     @Transactional
     public ResponseEntity save(@RequestBody @Valid DoctorRegistrationData data, UriComponentsBuilder uriBuilder){
+        
         var doctor = new Doctor(data);
         repository.save(doctor);
         var uri = uriBuilder.path("/doctor/{id}").buildAndExpand(doctor.getId()).toUri();
@@ -43,7 +44,8 @@ public class DoctorController {
     }
 
     @GetMapping
-    public ResponseEntity <Page<DoctorListingData>> list (@PageableDefault(size = 5, sort = {"fullName"}) Pageable pagination){
+    public ResponseEntity <Page<DoctorListingData>> list (@PageableDefault(size = 5, sort = {"fullName"})
+                                                              Pageable pagination){
         var page = repository.findAllByActiveTrue(pagination).map(DoctorListingData::new);
         return ResponseEntity.ok(page);
     }

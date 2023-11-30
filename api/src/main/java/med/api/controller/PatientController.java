@@ -2,11 +2,12 @@ package med.api.controller;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.api.domain.patient.Patient;
-import med.api.domain.patient.PatientDetailsData;
-import med.api.domain.patient.PatientRegistrationData;
-import med.api.domain.patient.PatientRepository;
+import med.api.domain.patient.*;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -23,7 +24,7 @@ public class PatientController {
     @PostMapping
     @Transactional
     public ResponseEntity save(@RequestBody @Valid PatientRegistrationData data, UriComponentsBuilder uriBuilder) {
-        System.out.println("Patient SAVE is ready");
+
         //saving patient
         var patient = new Patient(data);
         repository.save(patient);
@@ -36,7 +37,22 @@ public class PatientController {
     }
 
     @GetMapping
-    public void allPatient() {
-        System.out.println("Get Patient is ready");
+    public ResponseEntity <Page<PatientListingData>> list(@PageableDefault(size =5, sort = {"fullName"}) Pageable pagination){
+        var page = repository.findAllByActiveTrue(pagination).map(PatientListingData::new);
+        return ResponseEntity.ok(page);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity details(@PathVariable Long id){
+        var patient = repository.getReferenceById(id);
+        return ResponseEntity.ok(new PatientDetailsData(patient));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity updateInfo(@RequestBody @Valid PatientUpdateData patientUpdate){
+        var patient = repository.getReferenceById(patientUpdate.id());
+        patient.updateInfo(patientUpdate);
+        return ResponseEntity.ok(new PatientDetailsData(patient));
     }
 }

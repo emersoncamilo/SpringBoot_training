@@ -12,7 +12,7 @@ public record DoctorUpdateData(
     
     String phone,
     
-    AddressData address) {
+    AddressData addressData) {
 
         // public DoctorUpdateData(Doctor doctor){
         //     this(doctor.getId(), doctor.getFullName(), doctor.getPhone(), doctor.getAddress())
