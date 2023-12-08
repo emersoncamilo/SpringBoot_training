@@ -4,6 +4,7 @@ import med.api.domain.ValidationException;
 import med.api.domain.appointment.Appointment;
 import med.api.domain.appointment.AppointmentRepository;
 import med.api.domain.appointment.AppointmentScheduleData;
+import med.api.domain.doctor.Doctor;
 import med.api.domain.doctor.DoctorRepository;
 import med.api.domain.patient.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,16 @@ public class AppointmentSchedule {
 //        appointmentRepository.save(appointment);
     }
 
-    private void chooseDoctor(AppointmentScheduleData data) {
+    private Doctor chooseDoctor(AppointmentScheduleData data) {
+        if (data.idDoctor() != null){
+            return doctorRepository.getReferenceById(data.idDoctor());
+        }
+        if (data.specialty() == null){
+            throw new ValidationException("Speciality is obligated when doctor wasn't chosen");
+        }
+        return doctorRepository.chooseDoctorFreeOnDate(data.specialty(), data.date());
+
+
 //        doctorRepository.findById(data.idDoctor()).get()
     }
 
