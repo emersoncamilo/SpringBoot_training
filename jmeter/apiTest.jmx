@@ -441,6 +441,55 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Random;
+
+// Set the format of the date
+SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&apos;T&apos;HH:mm&quot;);
+
+// Get the current date and time
+Calendar currentDate = Calendar.getInstance();
+
+// Add a random number of days (up to 30) to the current date
+Random randomDays = new Random();
+int randomDayOffset = randomDays.nextInt(30); // Random number of days between 0 and 29
+currentDate.add(Calendar.DAY_OF_MONTH, randomDayOffset);
+
+// Set the initial time to 10:00 AM
+currentDate.set(Calendar.HOUR_OF_DAY, 10);
+currentDate.set(Calendar.MINUTE, 0);
+currentDate.set(Calendar.SECOND, 0);
+
+// Check if the generated date is on a weekend (Saturday or Sunday)
+while (currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY || currentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+    // If it&apos;s a weekend, add one more day
+    currentDate.add(Calendar.DAY_OF_MONTH, 1);
+}
+
+// Generate a random time within the range of 10 AM to 6 PM
+Random random = new Random();
+int randomHour = random.nextInt(6) + 10; // Random hour between 10 and 15
+int randomMinute = random.nextInt(60); // Random minute between 0 and 59
+
+// Set the generated random time
+currentDate.set(Calendar.HOUR_OF_DAY, randomHour);
+currentDate.set(Calendar.MINUTE, randomMinute);
+
+// Format the future date
+String futureDate = dateFormat.format(currentDate.getTime());
+
+// Print and store the future date in a JMeter variable
+log.info(&quot;Future Date: &quot; + futureDate);
+vars.put(&quot;futureDateVariable&quot;, futureDate);
+</stringProp>
+            <stringProp name="scriptLanguage">java</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="APPOINTMENT_POST" enabled="true">
             <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
             <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
@@ -450,7 +499,43 @@
                   <stringProp name="Argument.value">{&#xd;
 	&quot;idDoctor&quot;: 1,&#xd;
 	&quot;idPatient&quot;: 1,&#xd;
-	&quot;date&quot;: &quot;2024-12-06T10:30&quot;&#xd;
+	&quot;appointmentDate&quot;:&quot;${futureDateVariable}&quot;&#xd;
+}&#xd;
+&#xd;
+&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain"></stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol"></stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path"></stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.gui.JSONFormatterGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonformatter.JSONFormatter" testname="jp@gc - JSON Format Post Processor" enabled="true"/>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="APPOINTMENT_POST" enabled="false">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;idDoctor&quot;: 1,&#xd;
+	&quot;idPatient&quot;: 1,&#xd;
+	&quot;appointmentDate&quot;: &quot;2024-0${__Random(1,9,)}-${__Random(1,28,)}T${__Random(10,18,)}:00&quot;&#xd;
 }</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>

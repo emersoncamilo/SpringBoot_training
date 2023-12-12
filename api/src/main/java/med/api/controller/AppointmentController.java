@@ -1,8 +1,9 @@
 package med.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import med.api.domain.appointment.AppointmentDetailData;
+import med.api.domain.appointment.AppointmentSchedule;
 import med.api.domain.appointment.AppointmentScheduleData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("appointments")
+@SecurityRequirement(name = "bearer-key")
 public class AppointmentController {
 
     @Autowired
-    private AppointmentSchedule schedule;
+    private AppointmentSchedule appointmentSchedule;
 
     @PostMapping
     @Transactional
-    public ResponseEntity schedule (@RequestBody @Valid AppointmentScheduleData data){
-        schedule.toSchedule(data);
-        System.out.println(data);
-        return ResponseEntity.ok(new AppointmentDetailData(null, null, null, null));
+    public ResponseEntity toSchedule (@RequestBody @Valid AppointmentScheduleData data){
+        var dto = appointmentSchedule.toSchedule(data);
+        return ResponseEntity.ok(dto);
     }
 }

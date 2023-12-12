@@ -13,29 +13,27 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long>{
 
     @Query("""
             select d from Doctor d
-            where 
+            where
             d.active = true
-            and 
+            and
             d.specialty = :specialty
             and
-            m.id not in(
-                select c.doctor from Appointment a
+            d.id not in(
+                select a.doctor.id from Appointment a
                 where
-                c.date = date 
-            
+                a.appointmentDate = :date
             )
             order by rand()
             limit 1
-                   
-            """)
+        """)
     Doctor chooseDoctorFreeOnDate(Specialty specialty, LocalDateTime date);
 
 
     @Query("""
             select d.active
             from Doctor d
-            where 
-            d.id = :idDoctor
+            where
+            d.id = :id
             """)
-    Boolean findActiveById(Long idDoctor);
+    Boolean findActiveById(Long id);
 }

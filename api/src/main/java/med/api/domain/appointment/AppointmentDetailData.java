@@ -5,6 +5,11 @@ import java.time.LocalDateTime;
 public record AppointmentDetailData(
         Long id,
         Long idDoctor,
-        Long idPacient,
+        Long idPatient,
         LocalDateTime date) {
+
+    public AppointmentDetailData(Appointment appointment) {
+        this(appointment.getId(), appointment.getDoctor().getId(), appointment.getPatient().getId(), appointment.getAppointmentDate());
+    }
+
 }

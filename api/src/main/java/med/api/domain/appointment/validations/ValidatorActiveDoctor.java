@@ -4,11 +4,12 @@ import med.api.domain.ValidationException;
 import med.api.domain.appointment.AppointmentScheduleData;
 import med.api.domain.doctor.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-
-public class ValidatorActiveDoctor {
+@Component
+public class ValidatorActiveDoctor implements ValidatorAppointmentScheduling{
     @Autowired
     private DoctorRepository doctorRepository;
 

@@ -10,8 +10,9 @@ import med.api.domain.patient.Patient;
 
 import java.time.LocalDateTime;
 
+
 @Table(name = "appointments")
-@Entity
+@Entity(name = "Appointment")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,7 +31,7 @@ public class Appointment {
     @JoinColumn(name="patient_id")
     private Patient patient;
 
-    private LocalDateTime date;
+    private LocalDateTime appointmentDate;
 
 
 }

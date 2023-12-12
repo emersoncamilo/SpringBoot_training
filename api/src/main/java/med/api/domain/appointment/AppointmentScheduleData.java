@@ -11,8 +11,8 @@ public record AppointmentScheduleData(
         @NotNull
         Long idPatient,
 
-        Specialty specialty,
         @NotNull
         @Future
-        LocalDateTime date) {
+        LocalDateTime appointmentDate,
+        Specialty specialty) {
 }

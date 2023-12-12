@@ -2,7 +2,7 @@ create table appointments(
     id bigint not null auto_increment,
     doctor_id bigint not null,
     patient_id bigint not null,
-    data datetime not null,
+    appointment_date datetime not null,
 
     primary key(id),
 
